@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +10,10 @@
     android:orientation="vertical"
 android:padding="8dp">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <TextView
         android:id="@+id/tv_start_time"
         android:layout_width="wrap_content"
@@ -34,5 +38,16 @@ android:padding="8dp">
         android:textColor="@color/white"
         android:textSize="18sp"
         tools:text="Steps" />
-
 </LinearLayout>
+
+    <ImageView
+        android:id="@+id/action_delete"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+
+        />
+
+</RelativeLayout>

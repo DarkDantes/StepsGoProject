@@ -20,13 +20,22 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/deleteAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
         android:text="Очистить историю" />
+
+    <Button
+        android:id="@+id/gotomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_centerHorizontal="true"
+        android:layout_above="@+id/deleteAll"
+        android:layout_marginBottom="10dp"
+        android:text="Назад" />
 
 
 </RelativeLayout>

@@ -15,13 +15,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="207dp"
-        android:text="История"
+        android:text="История активности"
         android:textColor="#ECE2F4"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonStart"
@@ -39,13 +38,14 @@
         android:id="@+id/counts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="0"
         android:textColor="#3F0250"
         android:textColorHighlight="#FFFFFF"
         android:textColorHint="#FDF7F7"
         android:textColorLink="#FFFFFF"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -69,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Шаги"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -79,13 +80,63 @@
         android:id="@+id/dateNowView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="дек. 13 2022, 04:03:47 PM"
+        android:fontFamily="sans-serif-medium"
+        android:text="04:03"
         android:textColor="#6750A3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonHistory" />
+
+
+    <TextView
+        android:id="@+id/dateNowViewMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="13 2022"
+        android:textColor="#6750A3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dateNowView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dateNowViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="дек."
+        android:textColor="#6750A3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dateNowViewMonth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Шагомер активен"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <ImageView
+        android:id="@+id/HelpInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:outlineAmbientShadowColor="#CBB8F8"
+        android:outlineSpotShadowColor="#6750A3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:srcCompat="@android:drawable/ic_menu_help" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
