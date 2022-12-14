@@ -9,6 +9,6 @@ data class User(
     var lastName : String = "",
     var countsteps: String = ""
 
-){
+) : java.io.Serializable  {
     @PrimaryKey(autoGenerate = true)  var id: Int = 0
 }

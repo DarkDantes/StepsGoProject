@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setContentView(binding.root)
 
         timer = Runnable() {
-            binding.dateNowView.text = timeOnDisplay().toString()
+            //binding.dateNowView.text = timeOnDisplay().toString()
+            timeOnDisplay()
                 handler.postDelayed(timer, 30000)
         }
 
@@ -64,6 +65,32 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             val intent = Intent(this, HistoryActivity::class.java)
             startActivity(intent)
         }
+
+
+        binding.HelpInfo.setOnClickListener {
+            val builderHelp = AlertDialog.Builder(this@MainActivity)
+            builderHelp.setTitle("Шагомер StepsGo")
+            builderHelp.setMessage("""
+                *Версия v.1.1
+                *Разработчик: vk.com/endofempty
+                *Приложение считает ваши шаги в процессе хотьбы
+                *Для активации просто активируйте счетчик
+                *Для сброса счетчика и сохранения маршрута нажмите на кнопку Обнулить
+                *В истории активности отображаются все ваши маршруты
+            """.trimIndent())
+            builderHelp.setPositiveButton("Ок"){ p0, p1 -> p0.dismiss() }
+            val dialogHelp = builderHelp.create()
+            dialogHelp.show()
+        }
+
+       binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+           if (isChecked) {
+               binding.switch1.text = "Шагомер активен"
+           } else {
+               binding.switch1.text = "Шагомер неактивен"
+           }
+       }
+
 
 
     // binding.counts.text = "0".toString()
@@ -121,9 +148,11 @@ fun timenow(): String? {
 }
 
 
-    fun timeOnDisplay(): String? {
-        return LocalDateTime.now()
-            .format(DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm"))
+    fun timeOnDisplay() {
+       // binding.dateNowViewTime.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm"))
+        binding.dateNowViewTime.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy"))
+        binding.dateNowViewMonth.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM"))
+        binding.dateNowView.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
 
@@ -144,6 +173,9 @@ fun timenow(): String? {
        // binding.dateNowView.text = timenow().toString()
 
 
+
+
+
        running = true
           val stepSensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
@@ -152,9 +184,11 @@ fun timenow(): String? {
             Toast.makeText(this, "Сенсор не определен", Toast.LENGTH_SHORT).show()
         } else
        {
-            sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST)
-
+          sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST)
         }
+
+
+
     }
 
 
@@ -208,9 +242,11 @@ fun timenow(): String? {
                 else
                 {
 
+
+
                     val builder = AlertDialog.Builder(this@MainActivity)
-                    builder.setMessage("Количество шагов: $lastStep за период с $savedtime по $lastDateStep . Если не правильно, то нажмите отмена!")
-                    builder.setPositiveButton("Сохранить?"){ p0, p1 ->
+                    builder.setMessage("Количество шагов: $lastStep за период с $savedtime по $lastDateStep")
+                    builder.setPositiveButton("Сохранить"){ p0, p1 ->
                         lifecycleScope.launch {
                             val user = User(firstName = "Старт: $savedtime", lastName = "Финиш: $lastDateStep", "Шаги: ${lastStep.toString()}")
                             AppDatabase(this@MainActivity).getUserDao().addUser(user)
@@ -293,11 +329,12 @@ fun timenow(): String? {
 
     override fun onSensorChanged(event: SensorEvent?)
     {
-        if (running)
+      //  if (running)
+        if(binding.switch1.isChecked)
         {
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-          // Toast.makeText(applicationContext, currentSteps.toString(), Toast.LENGTH_SHORT).show()
+           //Toast.makeText(applicationContext, totalSteps.toString(), Toast.LENGTH_SHORT).show()
                    binding.counts.text = currentSteps.toString()
 
         }
